@@ -1,0 +1,5 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.css";
+/* @import "~jquery/dist/css/jquery.css" */
+ @import "assets/css/login.layout.scss";
+ /* @import "app/login/login.component.css"*/
