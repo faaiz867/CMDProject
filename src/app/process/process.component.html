@@ -1,16 +1,153 @@
-<p>Process</p>
-<div id="mySidenav" class="sidenav">
-  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-  <a href="#">About</a>
-  <a href="#">Services</a>
-  <a href="#">Clients</a>
-  <a href="#">Contact</a>
+<!--<app-process></app-process>-->
+
+<div class="container">
+  <app-header></app-header>
 </div>
 
-<!-- Use any element to open the sidenav -->
-<span onclick="openNav()">open</span>
+<hr>
+<br>
 
-<!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page -->
-<div id="main">
-  
+
+<div>
+ 
+  <h2 class="badge-dark form-control mr-sm-2">Processing</h2>
+  <br>
+  <div class="row">
+    <div class="col-4">
+        
+        <table class="table table-hover">
+            <thead>
+            <tr>
+              <th>#</th>
+              <th>ProcesNo.</th>
+              <th>CustName</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor= "let proces of process">
+              <td>{{ proces._id }}</td>
+              <td> {{ proces.process_no }}</td>
+              <td> {{ proces.cust_name }}</td>
+              <td>
+                <button class="btn btn-primary" (click)="getDataDetail(proces._id)">Show Detail</button>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+    </div>
+    <div class="col-8">
+<form style="margin-left: 1%">
+  <div class="form-group form-inline">
+  <label >* ProcessNo.</label>
+  <input  style="margin-left: 30px" class="form-control mr-sm-2" type="text" placeholder="ProcessNo" value={{processform.process_no}}>
+
+  <label style="margin-left: 20%">ProcessDate.</label>
+    <mat-form-field  style="margin-left: 15px">
+      <input matInput [matDatepicker]="picker" placeholder="Choose a date" [value]="date.value">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker startView="month"></mat-datepicker>
+    </mat-form-field>
+
+  </div>
+  <div class="form-group form-inline">
+    <label>* CustName.</label>
+    <input  style="margin-left: 30px; width:84% " class="form-control mr-sm-2" type="text" placeholder="Enter Customer's Name"value={{processform.cust_name}}>
+  </div>
+
+  <div class="form-group form-inline">
+    <label>* S/O.</label>
+    <input  style="margin-left: 79px; width:84% " class="form-control mr-sm-2" type="text" placeholder="Enter Father's Name" value={{processform.so}}>
+  </div>
+
+  <div class="form-group form-inline">
+    <label for="Protype">* ProcessType.</label>
+    <select style="margin-left: 14px; width: 21%;" id="Protype" name="Protype" [(ngModel)]="Protype" class="form-control" >
+      <option value="1">Monthly</option>
+      <option value="2">Daily</option>
+    </select>
+  </div>
+
+
+  <div class="form-group form-inline">
+    <label >* ItemCode.</label>
+    <input  style="margin-left: 37px" class="form-control mr-sm-2" type="text" placeholder="Item Code" value={{processform.item_code}}>
+
+    <label style="margin-left: 2%">ItemName.</label>
+    <input style="margin-left: 15px; width:51%" class="form-control mr-sm-2" type="text" placeholder="Item Name"value={{processform.item_name}}>
+
+  </div>
+
+  <div class="form-group form-inline">
+    <label >* ProdCode.</label>
+    <input  style="margin-left: 37px" class="form-control mr-sm-2" type="text" placeholder="Product Code"value={{processform.product_code}}>
+
+    <label style="margin-left: 2%">ProdName.</label>
+    <input style="margin-left: 15px; width:51%" class="form-control mr-sm-2" type="text" placeholder="Product Name"value={{processform.product_name}}>
+
+  </div>
+
+  <div class="form-group form-inline">
+    <label >* CompCode.</label>
+    <input  style="margin-left: 28px" class="form-control mr-sm-2" type="text" placeholder="Company Code"value={{processform.company_code}}>
+
+    <label style="margin-left: 2%">ComName.</label>
+    <input style="margin-left: 15px; width:51%" class="form-control mr-sm-2" type="text" placeholder="Company Name"value={{processform.company_name}}>
+
+  </div>
+
+  <div class="form-group form-inline">
+    <label >* Model.</label>
+    <input  style="margin-left: 63px" class="form-control mr-sm-2" type="text" placeholder="Model"value={{processform.model}}>
+
+    <label style="margin-left: 2%">SerialNo1.</label>
+    <input style="margin-left: 22px; width:51%" class="form-control mr-sm-2" type="text" placeholder="Serial No. 1"value={{processform.serial_no1}}>
+
+  </div>
+  <div class="form-group form-inline">
+    <label >* CashPrice.</label>
+    <input  style="margin-left: 35px" class="form-control mr-sm-2" type="number" placeholder="Cash Price"value={{processform.cash_price}}>
+
+    <label style="margin-left: 2%">SerialNo2.</label>
+    <input style="margin-left: 22px; width:51%" class="form-control mr-sm-2" type="text" placeholder="Serial No 2 (Optional)"value={{processform.serial_no2}}>
+
+  </div>
+
+
+  <div class="form-group form-inline">
+    <label >* InstPrice.</label>
+    <input  style="margin-left: 43.5px" class="form-control mr-sm-2" type="number" placeholder="Installment Price"value={{processform.install_price}}>
+
+    <label style="margin-left: 20%">ProcessFee.</label>
+    <input style="margin-left: 20px; width:32%" class="form-control mr-sm-2" type="number" placeholder="Processing Fee"value={{processform.process_fee}}>
+
+  </div>
+
+
+
+  <div class="form-group form-inline">
+    <label >* Advance.</label>
+    <input  style="margin-left: 43.5px" class="form-control mr-sm-2" type="number" placeholder="Advance"value={{processform.advance}}>
+
+    <label style="margin-left: 20%">MonthlyInst.</label>
+    <input style="margin-left: 21px; width:32%" class="form-control mr-sm-2" type="number" placeholder="Monthly Installment"value={{processform.monthly_install}}>
+
+  </div>
+
+
+
+  <div class="form-group form-inline">
+    <label >* Duration.</label>
+    <input  style="margin-left: 43.5px" class="form-control mr-sm-2" type="number" placeholder="Duration"value={{processform.duration}}>
+
+    <label style="margin-left: 20%">DailyInst.</label>
+    <input style="margin-left: 45px; width:32%" class="form-control mr-sm-2" type="number" placeholder="Daily Installment"value={{processform.daily_install}}>
+
+  </div>
+  <hr>
+
+<input style="margin-left: 90%" class="btn btn-primary " type="submit" value="Submit">
+  <br><br>
+</form>
+</div>
+</div>
 </div>
